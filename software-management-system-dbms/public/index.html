@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b35">
+  <title>Software Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script defer src="/js/api.js"></script>
+  <script defer src="/js/dashboard.js"></script>
+  <script defer src="/js/crud.js"></script>
+  <script defer src="/js/clients.js"></script>
+  <script defer src="/js/developers.js"></script>
+  <script defer src="/js/projects.js"></script>
+  <script defer src="/js/modules.js"></script>
+  <script defer src="/js/tasks.js"></script>
+  <script defer src="/js/bugs.js"></script>
+  <script defer src="/js/releases.js"></script>
+  <script defer src="/js/project-details.js"></script>
+  <script defer src="/js/reports.js"></script>
+  <script defer src="/js/queries.js"></script>
+  <script defer src="/js/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Software Management System home">
+        <span class="brand-mark">S<span>+</span></span>
+        <span class="brand-name">Sitema<span>Studio</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="navigation" aria-label="Main navigation">
+        <button class="nav-link active" data-page="dashboard"><span class="nav-icon">◫</span>Overview</button>
+        <div class="nav-caption">MANAGE</div>
+        <button class="nav-link" data-page="clients"><span class="nav-icon">◉</span>Clients</button>
+        <button class="nav-link" data-page="developers"><span class="nav-icon">♙</span>Developers</button>
+        <button class="nav-link" data-page="projects"><span class="nav-icon">▧</span>Projects</button>
+        <button class="nav-link" data-page="modules"><span class="nav-icon">▦</span>Modules</button>
+        <button class="nav-link" data-page="tasks"><span class="nav-icon">☑</span>Tasks</button>
+        <button class="nav-link" data-page="bugs"><span class="nav-icon">⌁</span>Bugs</button>
+        <button class="nav-link" data-page="releases"><span class="nav-icon">↗</span>Releases</button>
+        <div class="nav-caption">INSIGHTS</div>
+        <button class="nav-link" data-page="project-details"><span class="nav-icon">⌕</span>Project details</button>
+        <button class="nav-link" data-page="reports"><span class="nav-icon">▤</span>Reports</button>
+        <button class="nav-link" data-page="queries"><span class="nav-icon">&gt;_</span>SQL queries</button>
+      </nav>
+      <div class="sidebar-footer">
+        <span class="connection-dot"></span>
+        <span><strong>MySQL workspace</strong><small>Project operations</small></span>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="mobile-menu" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><i>/</i><strong id="current-page-label">Overview</strong></div>
+        <div class="topbar-right"><span class="today-label" id="today-label"></span><span class="avatar">SM</span></div>
+      </header>
+      <div class="content-wrap">
+        <section class="page-view active" id="page-dashboard">
+          <div class="page-heading">
+            <div><p class="eyebrow">MONDAY, YOUR WORK AT A GLANCE</p><h1>Overview</h1><p class="page-description">A clear view of delivery, people, and project health.</p></div>
+            <button class="button button-dark" data-go="projects"><span>＋</span> New project</button>
+          </div>
+          <div class="stat-grid" id="dashboard-stats"><div class="stat-card loading-card">Loading project metrics…</div></div>
+          <div class="dashboard-grid">
+            <article class="panel chart-panel"><div class="panel-heading"><div><span class="section-kicker">QUALITY</span><h2>Open bugs by severity</h2></div><span class="panel-note">Unresolved</span></div><div class="chart-wrap"><canvas id="bugs-chart" aria-label="Open bugs by severity"></canvas></div></article>
+            <article class="panel chart-panel"><div class="panel-heading"><div><span class="section-kicker">DELIVERY</span><h2>Task status</h2></div><span class="panel-note">All projects</span></div><div class="chart-wrap chart-wrap-doughnut"><canvas id="tasks-chart" aria-label="Tasks by status"></canvas></div></article>
+          </div>
+          <article class="panel table-panel"><div class="panel-heading"><div><span class="section-kicker">PORTFOLIO</span><h2>Recent projects</h2></div><button class="text-button" data-go="projects">All projects <span>→</span></button></div><div class="table-scroll"><table id="recent-projects"><tbody><tr><td class="loading-cell">Loading projects…</td></tr></tbody></table></div></article>
+        </section>
+
+        <section class="page-view" id="page-clients"><div class="page-heading"><div><p class="eyebrow">RELATIONSHIPS</p><h1>Clients</h1><p class="page-description">Manage organizations and their contact details.</p></div><button class="button button-dark" data-add="clients">＋ Add client</button></div><div id="crud-clients"></div></section>
+        <section class="page-view" id="page-developers"><div class="page-heading"><div><p class="eyebrow">PEOPLE</p><h1>Developers</h1><p class="page-description">Keep the team directory and workload ownership up to date.</p></div><button class="button button-dark" data-add="developers">＋ Add developer</button></div><div id="crud-developers"></div></section>
+        <section class="page-view" id="page-projects"><div class="page-heading"><div><p class="eyebrow">DELIVERY PORTFOLIO</p><h1>Projects</h1><p class="page-description">Track scope, schedules, budget, and client commitments.</p></div><button class="button button-dark" data-add="projects">＋ Add project</button></div><div id="crud-projects"></div></section>
+        <section class="page-view" id="page-modules"><div class="page-heading"><div><p class="eyebrow">PROJECT STRUCTURE</p><h1>Modules</h1><p class="page-description">Organize delivery into manageable product areas.</p></div><button class="button button-dark" data-add="modules">＋ Add module</button></div><div id="crud-modules"></div></section>
+        <section class="page-view" id="page-tasks"><div class="page-heading"><div><p class="eyebrow">TEAM EXECUTION</p><h1>Tasks</h1><p class="page-description">Prioritize work and make ownership visible.</p></div><button class="button button-dark" data-add="tasks">＋ Add task</button></div><div id="crud-tasks"></div></section>
+        <section class="page-view" id="page-bugs"><div class="page-heading"><div><p class="eyebrow">QUALITY CONTROL</p><h1>Bugs</h1><p class="page-description">Triage defects by severity, status, and owner.</p></div><button class="button button-dark" data-add="bugs">＋ Add bug</button></div><div id="crud-bugs"></div></section>
+        <section class="page-view" id="page-releases"><div class="page-heading"><div><p class="eyebrow">SHIP WITH CONFIDENCE</p><h1>Releases</h1><p class="page-description">Maintain a dependable history of project delivery.</p></div><button class="button button-dark" data-add="releases">＋ Add release</button></div><div id="crud-releases"></div></section>
+
+        <section class="page-view" id="page-project-details"><div class="page-heading"><div><p class="eyebrow">DELIVERY DEEP DIVE</p><h1>Project details</h1><p class="page-description">One place for a project's people, work, quality, and releases.</p></div><label class="select-inline"><span>Project</span><select id="detail-project-select"><option value="">Choose a project</option></select></label></div><div id="project-detail-content"><div class="empty-state">Select a project to view its delivery details.</div></div></section>
+
+        <section class="page-view" id="page-reports"><div class="page-heading"><div><p class="eyebrow">MEASURE WHAT MATTERS</p><h1>Reports</h1><p class="page-description">Operational snapshots generated from live project data.</p></div><button class="button button-light" id="refresh-reports">↻ Refresh reports</button></div><div id="reports-content" class="reports-grid"><div class="loading-card">Loading reports…</div></div></section>
+
+        <section class="page-view" id="page-queries"><div class="page-heading"><div><p class="eyebrow">DATABASE LAB</p><h1>SQL queries</h1><p class="page-description">Run the predefined examples against the project database.</p></div><span class="safe-label">PREDEFINED QUERIES ONLY</span></div><div id="queries-content" class="query-list"><div class="loading-card">Loading query catalog…</div></div></section>
+      </div>
+    </main>
+  </div>
+  <dialog id="record-dialog" class="record-dialog"><form id="record-form"><div class="dialog-heading"><div><span class="section-kicker" id="dialog-kicker">RECORD</span><h2 id="dialog-title">Add record</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close dialog">×</button></div><div id="dialog-fields" class="form-grid"></div><div class="dialog-actions"><button type="button" class="button button-light close-dialog">Cancel</button><button type="submit" class="button button-dark" id="save-record">Save record</button></div></form></dialog>
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
