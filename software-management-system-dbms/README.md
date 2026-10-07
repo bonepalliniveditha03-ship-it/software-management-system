@@ -97,4 +97,4 @@ Add the ER diagram, final report, and query screenshots to `diagrams/`, `docs/`,
 
 ## GitHub Repository
 
-Repository link: `<Add the GitHub repository URL here>`
+Repository link:https://github.com/bonepalliniveditha03-ship-it/software-management-system
